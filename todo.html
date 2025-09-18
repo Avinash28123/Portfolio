@@ -1,378 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mini To-Do App (Single File)</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List App</title>
   <style>
-    /* Basic reset */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-
     body {
-      background: linear-gradient(135deg,#f6f8ff,#fff);
-      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 28px;
-      color: #111827;
+      align-items: center;
     }
-
-    .card {
-      width: 100%;
-      max-width: 760px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(18, 38, 63, .08);
-      padding: 22px;
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
     }
-
-    header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:16px;
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
     }
-
-    h1 { font-size: 20px; letter-spacing: -0.2px; }
-    p.sub { font-size: 13px; color: #55607a; }
-
-    /* Input area */
-    .add-row {
-      display:flex;
-      gap:10px;
-      margin: 14px 0 18px;
+    input {
+      width: 75%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
     }
-
-    .add-row input[type="text"] {
-      flex:1;
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid #e6e9f0;
-      font-size:15px;
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #667eea;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
     }
-
-    .btn {
-      background:#2b6ef6;
-      color:white;
-      border:none;
-      padding:10px 14px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:600;
+    button:hover {
+      background: #764ba2;
     }
-    .btn:active { transform: translateY(1px); }
-
-    .controls {
-      display:flex;
-      gap:8px;
-      align-items:center;
-      margin-bottom:14px;
-      flex-wrap:wrap;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
     }
-    .btn.ghost {
-      background:transparent;
-      color:#374151;
-      border:1px solid #e6e9f0;
-      font-weight:600;
+    li {
+      background: #f4f4f4;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .small {
-      padding:8px 10px;
-      font-size:13px;
-      border-radius:8px;
+    .done {
+      text-decoration: line-through;
+      color: gray;
     }
-
-    /* Task list */
-    .task-list { list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:8px; }
-    .task {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:12px;
-      border-radius:10px;
-      border:1px solid #f0f3fa;
-      background: linear-gradient(180deg, rgba(10,10,10,0.01), transparent);
-    }
-
-    .task .left { display:flex; gap:12px; align-items:center; flex:1; }
-    .checkbox {
-      width:18px; height:18px; border-radius:4px; border:2px solid #d1d9ff; display:flex; align-items:center; justify-content:center; cursor:pointer;
-    }
-    .checkbox.checked { background:#2b6ef6; border-color:#2b6ef6; color:white; }
-    .title { font-size:15px; }
-    .title.done { text-decoration: line-through; opacity:0.6; }
-
-    .meta { font-size:12px; color:#6b7280; margin-top:4px; }
-
-    .actions { display:flex; gap:8px; align-items:center; }
-    .action-btn { background:transparent; border:none; cursor:pointer; color:#374151; padding:6px; border-radius:6px; }
-    .action-btn:hover { background:#f3f6ff; }
-
-    .empty { text-align:center; color:#6b7280; padding:18px 12px; border-radius:8px; border:1px dashed #e6e9f0; }
-
-    footer.report { display:flex; justify-content:space-between; align-items:center; margin-top:16px; font-size:13px; color:#475569; }
-    @media (max-width:520px){
-      .add-row { flex-direction:column; }
-      .controls { gap:6px; }
-      header { flex-direction:column; align-items:flex-start; gap:6px; }
+    .delete {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="card" role="application" aria-label="Mini ToDo App">
-    <header>
-      <div>
-        <h1>Mini To-Do App</h1>
-        <p class="sub">Simple single-file app — add, complete, edit and delete tasks. Data saved locally.</p>
-      </div>
-      <div>
-        <button id="clearAllBtn" class="btn ghost small">Clear All</button>
-      </div>
-    </header>
-
-    <div class="add-row" aria-hidden="false">
-      <input id="taskInput" type="text" placeholder="Add a new task (press Enter or click Add)" aria-label="New task title" />
-      <button id="addBtn" class="btn">Add</button>
-    </div>
-
-    <div class="controls">
-      <select id="filter" class="small" aria-label="Filter tasks">
-        <option value="all">All tasks</option>
-        <option value="active">Active</option>
-        <option value="completed">Completed</option>
-      </select>
-
-      <button id="exportBtn" class="btn ghost small">Export (JSON)</button>
-      <button id="importBtn" class="btn ghost small">Import</button>
-      <input id="importFile" type="file" accept="application/json" style="display:none" />
-    </div>
-
-    <ul id="taskList" class="task-list" aria-live="polite"></ul>
-
-    <div id="emptyMsg" class="empty" style="display:none">No tasks yet — add your first task!</div>
-
-    <footer class="report">
-      <div id="summary">0 tasks • 0 completed</div>
-      <div style="font-size:12px;color:#6b7280">LocalStorage key: <code>todoTasks</code></div>
-    </footer>
+  <div class="container">
+    <h2>📝 To-Do List</h2>
+    <input type="text" id="task" placeholder="Enter task...">
+    <button onclick="addTask()">Add</button>
+    <ul id="list"></ul>
   </div>
 
   <script>
-    // Single-file To-Do App JS
-    (function(){
-      const LS_KEY = "todoTasks";
-      let tasks = []; // { id, title, done, createdAt }
-      const taskListEl = document.getElementById("taskList");
-      const taskInput = document.getElementById("taskInput");
-      const addBtn = document.getElementById("addBtn");
-      const filterSel = document.getElementById("filter");
-      const summaryEl = document.getElementById("summary");
-      const emptyMsg = document.getElementById("emptyMsg");
-      const clearAllBtn = document.getElementById("clearAllBtn");
-      const exportBtn = document.getElementById("exportBtn");
-      const importBtn = document.getElementById("importBtn");
-      const importFile = document.getElementById("importFile");
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-      // util: unique id
-      function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+    function render() {
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span onclick="toggleDone(${index})" class="${task.done ? 'done' : ''}">${task.text}</span>
+          <button class="delete" onclick="deleteTask(${index})">X</button>
+        `;
+        list.appendChild(li);
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
 
-      // load from localStorage
-      function load(){
-        try {
-          const raw = localStorage.getItem(LS_KEY);
-          tasks = raw ? JSON.parse(raw) : [];
-        } catch(e){
-          tasks = [];
-          console.error("Load error", e);
-        }
-      }
-
-      function save(){
-        localStorage.setItem(LS_KEY, JSON.stringify(tasks));
-      }
-
-      function render(){
-        const filter = filterSel.value;
-        taskListEl.innerHTML = "";
-        const visible = tasks.filter(t => {
-          if(filter === "all") return true;
-          if(filter === "active") return !t.done;
-          return t.done;
-        });
-
-        if(visible.length === 0){
-          emptyMsg.style.display = "block";
-        } else {
-          emptyMsg.style.display = "none";
-        }
-
-        visible.forEach(t => {
-          const li = document.createElement("li");
-          li.className = "task";
-          li.dataset.id = t.id;
-
-          const left = document.createElement("div");
-          left.className = "left";
-
-          const cb = document.createElement("div");
-          cb.className = "checkbox" + (t.done ? " checked" : "");
-          cb.title = t.done ? "Mark as active" : "Mark as completed";
-          cb.setAttribute("role","button");
-          cb.setAttribute("aria-pressed", t.done ? "true" : "false");
-          cb.innerHTML = t.done ? "✓" : "";
-          cb.addEventListener("click", () => toggleDone(t.id));
-
-          const titleWrap = document.createElement("div");
-          const title = document.createElement("div");
-          title.className = "title" + (t.done ? " done" : "");
-          title.textContent = t.title;
-          titleWrap.appendChild(title);
-
-          const meta = document.createElement("div");
-          meta.className = "meta";
-          const dt = new Date(t.createdAt);
-          meta.textContent = dt.toLocaleString();
-          titleWrap.appendChild(meta);
-
-          left.appendChild(cb);
-          left.appendChild(titleWrap);
-
-          const actions = document.createElement("div");
-          actions.className = "actions";
-
-          const editBtn = document.createElement("button");
-          editBtn.className = "action-btn";
-          editBtn.title = "Edit";
-          editBtn.innerHTML = "✎";
-          editBtn.addEventListener("click", () => startEdit(t.id));
-
-          const delBtn = document.createElement("button");
-          delBtn.className = "action-btn";
-          delBtn.title = "Delete";
-          delBtn.innerHTML = "🗑";
-          delBtn.addEventListener("click", () => deleteTask(t.id));
-
-          actions.appendChild(editBtn);
-          actions.appendChild(delBtn);
-
-          li.appendChild(left);
-          li.appendChild(actions);
-          taskListEl.appendChild(li);
-        });
-
-        // summary
-        const total = tasks.length;
-        const doneCount = tasks.filter(t => t.done).length;
-        summaryEl.textContent = `${total} task${total!==1?"s":""} • ${doneCount} completed`;
-      }
-
-      // operations
-      function addTask(title){
-        if(!title || !title.trim()) return;
-        const t = { id: uid(), title: title.trim(), done: false, createdAt: Date.now() };
-        tasks.unshift(t); // newest first
-        save();
-        render();
-      }
-
-      function toggleDone(id){
-        const idx = tasks.findIndex(t => t.id === id);
-        if(idx === -1) return;
-        tasks[idx].done = !tasks[idx].done;
-        save();
-        render();
-      }
-
-      function deleteTask(id){
-        if(!confirm("Delete this task?")) return;
-        tasks = tasks.filter(t => t.id !== id);
-        save();
-        render();
-      }
-
-      function startEdit(id){
-        const t = tasks.find(x => x.id === id);
-        if(!t) return;
-        const newTitle = prompt("Edit task title:", t.title);
-        if(newTitle === null) return; // cancelled
-        const trimmed = newTitle.trim();
-        if(!trimmed) { alert("Title can't be empty"); return; }
-        t.title = trimmed;
-        save();
-        render();
-      }
-
-      function clearAll(){
-        if(!tasks.length) return;
-        if(!confirm("Clear ALL tasks? This cannot be undone.")) return;
-        tasks = [];
-        save();
-        render();
-      }
-
-      // Export / Import
-      function exportJSON(){
-        const blob = new Blob([JSON.stringify(tasks, null, 2)], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "todo-export.json";
-        a.click();
-        URL.revokeObjectURL(url);
-      }
-
-      function importJSONFile(file){
-        const reader = new FileReader();
-        reader.onload = function(e){
-          try {
-            const parsed = JSON.parse(e.target.result);
-            if(!Array.isArray(parsed)) throw new Error("Invalid format");
-            // simple validation: items with id & title
-            const valid = parsed.filter(p => p.id && p.title);
-            if(valid.length === 0) throw new Error("No valid tasks found");
-            tasks = valid.concat(tasks); // append imported tasks
-            save();
-            render();
-            alert("Import successful: " + valid.length + " tasks added.");
-          } catch(err){
-            alert("Import failed: " + (err.message || err));
-          }
-        };
-        reader.readAsText(file);
-      }
-
-      // event listeners
-      addBtn.addEventListener("click", () => {
-        addTask(taskInput.value);
+    function addTask() {
+      const taskInput = document.getElementById("task");
+      const text = taskInput.value.trim();
+      if (text) {
+        tasks.push({ text, done: false });
         taskInput.value = "";
-        taskInput.focus();
-      });
+        render();
+      }
+    }
 
-      taskInput.addEventListener("keydown", (e) => {
-        if(e.key === "Enter") {
-          addTask(taskInput.value);
-          taskInput.value = "";
-        }
-      });
-
-      filterSel.addEventListener("change", render);
-      clearAllBtn.addEventListener("click", clearAll);
-      exportBtn.addEventListener("click", exportJSON);
-      importBtn.addEventListener("click", () => importFile.click());
-      importFile.addEventListener("change", (e) => {
-        if(e.target.files && e.target.files[0]) importJSONFile(e.target.files[0]);
-        e.target.value = "";
-      });
-
-      // init
-      load();
+    function toggleDone(index) {
+      tasks[index].done = !tasks[index].done;
       render();
+    }
 
-      // expose for debug if needed
-      window.todoApp = { addTask, tasks };
-    })();
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      render();
+    }
+
+    render();
   </script>
 </body>
 </html>
