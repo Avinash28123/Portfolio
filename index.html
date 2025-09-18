@@ -1,4 +1,26 @@
+import { Mail, Phone, Code, Link } from "lucide-react";
 
+export default function AvinashPortfolio() {
+  const projects = [
+    {
+      title: "Phishing Website Detection",
+      desc: "Built a cloud-hosted ML model to detect phishing websites using Flask and Kaggle dataset.",
+      tech: ["Python", "Flask", "Machine Learning", "Cloud"],
+      link: "https://github.com/Avinash28123",
+    },
+    {
+      title: "Cross-Domain Detection Robotics",
+      desc: "Implemented object detection on e-puck robot in Webots with YOLOv5 & transfer learning.",
+      tech: ["YOLOv5", "Webots", "Robotics", "Python"],
+      link: "https://github.com/Avinash28123",
+    },
+    {
+      title: "Portfolio Website",
+      desc: "Responsive personal portfolio built using React.js and TailwindCSS.",
+      tech: ["React.js", "TailwindCSS", "JavaScript"],
+      link: "https://github.com/Avinash28123",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
@@ -12,10 +34,18 @@
             </p>
           </div>
           <nav className="hidden md:flex gap-6 items-center text-sm text-slate-700">
-            <a href="#about" className="hover:underline">About</a>
-            <a href="#projects" className="hover:underline">Projects</a>
-            <a href="#experience" className="hover:underline">Experience</a>
-            <a href="#contact" className="hover:underline">Contact</a>
+            <a href="#about" className="hover:underline">
+              About
+            </a>
+            <a href="#projects" className="hover:underline">
+              Projects
+            </a>
+            <a href="#experience" className="hover:underline">
+              Experience
+            </a>
+            <a href="#contact" className="hover:underline">
+              Contact
+            </a>
             <a
               href="https://github.com/Avinash28123"
               target="_blank"
@@ -28,7 +58,7 @@
         </div>
       </header>
 
-      {/* Main */}
+      {/* Main Content */}
       <main className="max-w-5xl mx-auto p-6 md:p-8 space-y-12">
         {/* Hero */}
         <section className="grid md:grid-cols-3 gap-8 items-center">
@@ -67,19 +97,18 @@
             </div>
           </div>
 
-          {/* Sidebar */}
           <aside className="rounded-2xl p-6 border border-slate-200 shadow-sm bg-white">
             <div className="flex flex-col gap-3">
               <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-indigo-500 to-sky-400 flex items-center justify-center text-white text-xl font-bold">
                 AV
               </div>
+
               <div className="text-sm text-slate-700">
                 <p className="font-medium">COER University, Roorkee</p>
                 <p>B.Tech Computer Science (Expected 2026)</p>
-                <p className="mt-2">
-                  Diploma - Mechanical Engineering (Phonics Group)
-                </p>
+                <p className="mt-2">Diploma - Mechanical Engineering (Phonics Group)</p>
               </div>
+
               <div className="pt-3 border-t border-slate-100">
                 <p className="text-xs text-slate-500">Contact</p>
                 <div className="mt-2 flex flex-col gap-2 text-sm">
@@ -108,27 +137,22 @@
         >
           <h3 className="text-xl font-semibold">Skills & Tools</h3>
           <p className="text-slate-600 mt-2">
-            A concise list of technologies and tools used in projects and
-            internships.
+            A concise list of technologies and tools used in projects and internships.
           </p>
 
           <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              "Python",
-              "Scikit-learn",
-              "TensorFlow",
-              "OpenCV",
-              "React.js",
-              "Node.js",
-              "Express.js",
-              "MongoDB",
-              "Power BI",
-              "Git & GitHub",
-              "Flask",
-              "Streamlit",
-            ].map((s) => (
-              <Badge key={s} label={s} />
-            ))}
+            <Badge label="Python" />
+            <Badge label="Scikit-learn" />
+            <Badge label="TensorFlow" />
+            <Badge label="OpenCV" />
+            <Badge label="React.js" />
+            <Badge label="Node.js" />
+            <Badge label="Express.js" />
+            <Badge label="MongoDB" />
+            <Badge label="Power BI" />
+            <Badge label="Git & GitHub" />
+            <Badge label="Flask" />
+            <Badge label="Streamlit" />
           </div>
         </section>
 
@@ -183,6 +207,7 @@
           className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
         >
           <h3 className="text-xl font-semibold">Internships & Experience</h3>
+
           <div className="mt-4 space-y-4">
             <JobCard
               role="Machine Learning Intern"
@@ -194,6 +219,7 @@
                 "Reduced preprocessing time by 30% by automating feature engineering pipelines.",
               ]}
             />
+
             <JobCard
               role="Web Development Intern"
               org="Internshala"
@@ -263,7 +289,6 @@
               </div>
             </div>
 
-            {/* Form */}
             <form
               action={`mailto:avinashofficial28103@gmail.com`}
               method="post"
@@ -271,13 +296,17 @@
               className="rounded-lg p-4 border border-slate-100"
             >
               <h4 className="font-medium">Quick message</h4>
-              <label className="block mt-3 text-xs text-slate-600">Your name</label>
+              <label className="block mt-3 text-xs text-slate-600">
+                Your name
+              </label>
               <input
                 className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
                 placeholder="Name"
               />
 
-              <label className="block mt-3 text-xs text-slate-600">Your email</label>
+              <label className="block mt-3 text-xs text-slate-600">
+                Your email
+              </label>
               <input
                 className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
                 placeholder="Email"
@@ -308,7 +337,7 @@
   );
 }
 
-/* Badge Component */
+/* Reusable Components */
 function Badge({ label }) {
   return (
     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-slate-100 bg-slate-50">
@@ -317,7 +346,6 @@ function Badge({ label }) {
   );
 }
 
-/* Job Card */
 function JobCard({ role, org, duration, bullets }) {
   return (
     <div className="rounded-lg p-4 border border-slate-100 bg-white">
@@ -329,6 +357,7 @@ function JobCard({ role, org, duration, bullets }) {
           </p>
         </div>
       </div>
+
       <ul className="mt-3 list-disc list-inside text-slate-700 text-sm">
         {bullets.map((b, i) => (
           <li key={i}>{b}</li>
