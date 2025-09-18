@@ -28,206 +28,364 @@ import React from "react"; import { MailIcon, PhoneIcon, LinkIcon, CodeIcon } fr
 
 const projects = [ { title: "AI-Powered Career Recommendation", desc: "Career prediction & recommendation system using Scikit-learn and Flask. Deployed on Streamlit Cloud for real-time access.", tech: ["Python", "Scikit-learn", "Flask", "Streamlit"], link: "https://github.com/Avinash28123/MACHINELEARNING", }, { title: "Amazon Sales Analysis (Power BI)", desc: "Interactive 4-page Power BI dashboard analyzing Amazon sales data (2010-2017) with advanced DAX reports.", tech: ["Power BI", "DAX", "Data Analysis"], link: "https://github.com/Avinash28123", }, { title: "Sign Language Detection", desc: "Real-time sign language recognition using OpenCV and TensorFlow (CNN) via webcam input.", tech: ["OpenCV", "TensorFlow", "CNN"], link: "https://github.com/Avinash28123", }, ];
 
-export default function AvinashPortfolio() { return ( <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900"> <header className="max-w-5xl mx-auto p-6 md:p-12"> <div className="flex items-center justify-between"> <div> <h1 className="text-3xl md:text-4xl font-extrabold">Avinash Shukla</h1> <p className="mt-1 text-slate-600">Aspiring Machine Learning Engineer & Web Developer</p> </div> <nav className="hidden md:flex gap-6 items-center text-sm text-slate-700"> <a href="#about" className="hover:underline">About</a> <a href="#projects" className="hover:underline">Projects</a> <a href="#experience" className="hover:underline">Experience</a> <a href="#contact" className="hover:underline">Contact</a> <a
-href="https://github.com/Avinash28123"
-target="_blank"
-rel="noreferrer"
-className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-slate-200 hover:shadow"
-> <CodeIcon size={16} /> GitHub </a> </nav> </div> </header>
+import { Mail, Phone, Code, Link } from "lucide-react";
 
-<main className="max-w-5xl mx-auto p-6 md:p-8 space-y-12">
-    {/* Hero */}
-    <section className="grid md:grid-cols-3 gap-8 items-center">
-      <div className="md:col-span-2">
-        <h2 className="text-2xl md:text-3xl font-bold">Hello — I'm Avinash</h2>
-        <p className="mt-4 text-slate-700 leading-relaxed">I am a B.Tech CSE student at COER University (2023-present). I enjoy building machine learning models, data visualizations, and full-stack web apps. I have interned on Machine Learning and Web Development internships where I improved model performance and built deployments.</p>
+export default function AvinashPortfolio() {
+  const projects = [
+    {
+      title: "Phishing Website Detection",
+      desc: "Built a machine learning model to classify websites as phishing or legitimate with Flask deployment.",
+      tech: ["Python", "Flask", "ML", "Cloud"],
+      link: "https://github.com/Avinash28123/phishing-detection",
+    },
+    {
+      title: "Cross-Domain Object Detection",
+      desc: "YOLO-based detection framework for autonomous robots using Webots simulator.",
+      tech: ["YOLOv5", "Webots", "Deep Learning"],
+      link: "https://github.com/Avinash28123/cross-domain-detection",
+    },
+    {
+      title: "Portfolio Website",
+      desc: "Personal portfolio made with React and TailwindCSS showcasing projects & internships.",
+      tech: ["React", "TailwindCSS"],
+      link: "https://github.com/Avinash28123",
+    },
+  ];
 
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href="https://www.linkedin.com/in/avinash-shukla-4446311b5/"
-            target="_blank"
-            rel="noreferrer"
-            className="px-4 py-2 rounded-md bg-slate-900 text-white text-sm hover:opacity-95"
-          >
-            View LinkedIn
-          </a>
-          <a
-            href="https://github.com/Avinash28123"
-            target="_blank"
-            rel="noreferrer"
-            className="px-4 py-2 rounded-md border border-slate-300 text-sm hover:bg-slate-50"
-          >
-            View GitHub
-          </a>
-          <a
-            href="#projects"
-            className="px-4 py-2 rounded-md bg-indigo-50 text-indigo-700 text-sm border border-indigo-100 hover:bg-indigo-100"
-          >
-            See Projects
-          </a>
-        </div>
-      </div>
-
-      <aside className="rounded-2xl p-6 border border-slate-200 shadow-sm bg-white">
-        <div className="flex flex-col gap-3">
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
+      {/* Header */}
+      <header className="max-w-5xl mx-auto p-6 md:p-12">
+        <div className="flex items-center justify-between">
           <div>
-            {/* placeholder avatar */}
-            <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-indigo-500 to-sky-400 flex items-center justify-center text-white text-xl font-bold">AV</div>
+            <h1 className="text-3xl md:text-4xl font-extrabold">Avinash Shukla</h1>
+            <p className="mt-1 text-slate-600">
+              Aspiring Machine Learning Engineer & Web Developer
+            </p>
           </div>
-
-          <div className="text-sm text-slate-700">
-            <p className="font-medium">COER University, Roorkee</p>
-            <p>B.Tech Computer Science (Expected 2026)</p>
-            <p className="mt-2">Diploma - Mechanical Engineering (Phonics Group)</p>
-          </div>
-
-          <div className="pt-3 border-t border-slate-100">
-            <p className="text-xs text-slate-500">Contact</p>
-            <div className="mt-2 flex flex-col gap-2 text-sm">
-              <a className="inline-flex items-center gap-2" href="mailto:avinashofficial28103@gmail.com"><MailIcon size={16} /> avinashofficial28103@gmail.com</a>
-              <a className="inline-flex items-center gap-2" href="tel:+918532831661"><PhoneIcon size={16} /> +91-8532831661</a>
-            </div>
-          </div>
+          <nav className="hidden md:flex gap-6 items-center text-sm text-slate-700">
+            <a href="#about" className="hover:underline">About</a>
+            <a href="#projects" className="hover:underline">Projects</a>
+            <a href="#experience" className="hover:underline">Experience</a>
+            <a href="#contact" className="hover:underline">Contact</a>
+            <a
+              href="https://github.com/Avinash28123"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-slate-200 hover:shadow"
+            >
+              <Code size={16} /> GitHub
+            </a>
+          </nav>
         </div>
-      </aside>
-    </section>
+      </header>
 
-    {/* Skills */}
-    <section id="about" className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      <h3 className="text-xl font-semibold">Skills & Tools</h3>
-      <p className="text-slate-600 mt-2">A concise list of technologies and tools used in projects and internships.</p>
+      {/* Main */}
+      <main className="max-w-5xl mx-auto p-6 md:p-8 space-y-12">
+        {/* Hero */}
+        <section className="grid md:grid-cols-3 gap-8 items-center">
+          <div className="md:col-span-2">
+            <h2 className="text-2xl md:text-3xl font-bold">Hello — I'm Avinash</h2>
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              I am a B.Tech CSE student at COER University (2023-present). I enjoy
+              building machine learning models, data visualizations, and full-stack
+              web apps. I have interned on Machine Learning and Web Development
+              internships where I improved model performance and built deployments.
+            </p>
 
-      <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-        <Badge label="Python" />
-        <Badge label="Scikit-learn" />
-        <Badge label="TensorFlow" />
-        <Badge label="OpenCV" />
-        <Badge label="React.js" />
-        <Badge label="Node.js" />
-        <Badge label="Express.js" />
-        <Badge label="MongoDB" />
-        <Badge label="Power BI" />
-        <Badge label="Git & GitHub" />
-        <Badge label="Flask" />
-        <Badge label="Streamlit" />
-      </div>
-    </section>
-
-    {/* Projects */}
-    <section id="projects">
-      <div className="flex items-center justify-between">
-        <h3 className="text-xl font-semibold">Selected Projects</h3>
-        <p className="text-sm text-slate-500">Projects & repositories from GitHub / Resume</p>
-      </div>
-
-      <div className="mt-4 grid gap-4 md:grid-cols-3">
-        {projects.map((p) => (
-          <article key={p.title} className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition">
-            <h4 className="font-semibold">{p.title}</h4>
-            <p className="text-sm text-slate-600 mt-2">{p.desc}</p>
-
-            <div className="mt-3 flex flex-wrap gap-2">
-              {p.tech.map((t) => (
-                <span key={t} className="text-xs px-2 py-1 rounded-full border border-slate-100">{t}</span>
-              ))}
-            </div>
-
-            <div className="mt-4 flex items-center justify-between">
-              <a href={p.link} target="_blank" rel="noreferrer" className="text-sm text-indigo-600 hover:underline inline-flex items-center gap-2">
-                <LinkIcon size={14} /> View Code
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="https://www.linkedin.com/in/avinash-shukla-4446311b5/"
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2 rounded-md bg-slate-900 text-white text-sm hover:opacity-95"
+              >
+                View LinkedIn
               </a>
-              <div className="text-xs text-slate-500">GitHub</div>
+              <a
+                href="https://github.com/Avinash28123"
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2 rounded-md border border-slate-300 text-sm hover:bg-slate-50"
+              >
+                View GitHub
+              </a>
+              <a
+                href="#projects"
+                className="px-4 py-2 rounded-md bg-indigo-50 text-indigo-700 text-sm border border-indigo-100 hover:bg-indigo-100"
+              >
+                See Projects
+              </a>
             </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    {/* Experience */}
-    <section id="experience" className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      <h3 className="text-xl font-semibold">Internships & Experience</h3>
-
-      <div className="mt-4 space-y-4">
-        <JobCard
-          role="Machine Learning Intern"
-          org="Internshala"
-          duration="2024"
-          bullets={[
-            "Cleaned and transformed raw datasets using Pandas and NumPy to improve model accuracy.",
-            "Improved model accuracy by 15% through hyperparameter tuning and algorithm optimization.",
-            "Reduced preprocessing time by 30% by automating feature engineering pipelines.",
-          ]}
-        />
-
-        <JobCard
-          role="Web Development Intern"
-          org="Internshala"
-          duration="2024"
-          bullets={[
-            "Built interactive and responsive UIs using React.js, HTML, CSS, and Bootstrap.",
-            "Developed APIs and handled requests using Node.js and Express.js.",
-            "Used MongoDB for efficient data storage and retrieval; deployed apps on Heroku & Firebase.",
-          ]}
-        />
-      </div>
-    </section>
-
-    {/* Certifications */}
-    <section className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      <h3 className="text-xl font-semibold">Certifications</h3>
-      <ul className="mt-3 list-disc list-inside text-slate-700">
-        <li>Machine Learning Internship Certificate — Internshala</li>
-        <li>Web Development Internship Certificate — Internshala</li>
-      </ul>
-    </section>
-
-    {/* Contact */}
-    <section id="contact" className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      <h3 className="text-xl font-semibold">Get in touch</h3>
-      <p className="text-slate-600 mt-2">Prefer email — or reach out on LinkedIn. I usually reply within a day.</p>
-
-      <div className="mt-4 grid md:grid-cols-2 gap-4">
-        <div className="rounded-lg p-4 border border-slate-100">
-          <h4 className="font-medium">Contact Info</h4>
-          <div className="mt-3 text-sm text-slate-700 space-y-2">
-            <div className="inline-flex items-center gap-2"><MailIcon size={16} /> <a href="mailto:avinashofficial28103@gmail.com">avinashofficial28103@gmail.com</a></div>
-            <div className="inline-flex items-center gap-2"><PhoneIcon size={16} /> <a href="tel:+918532831661">+91-8532831661</a></div>
-            <div className="inline-flex items-center gap-2"><LinkIcon size={16} /> <a href="https://www.linkedin.com/in/avinash-shukla-4446311b5/" target="_blank" rel="noreferrer">LinkedIn</a></div>
-            <div className="inline-flex items-center gap-2"><CodeIcon size={16} /> <a href="https://github.com/Avinash28123" target="_blank" rel="noreferrer">GitHub</a></div>
           </div>
+
+          {/* Sidebar */}
+          <aside className="rounded-2xl p-6 border border-slate-200 shadow-sm bg-white">
+            <div className="flex flex-col gap-3">
+              <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-indigo-500 to-sky-400 flex items-center justify-center text-white text-xl font-bold">
+                AV
+              </div>
+              <div className="text-sm text-slate-700">
+                <p className="font-medium">COER University, Roorkee</p>
+                <p>B.Tech Computer Science (Expected 2026)</p>
+                <p className="mt-2">
+                  Diploma - Mechanical Engineering (Phonics Group)
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100">
+                <p className="text-xs text-slate-500">Contact</p>
+                <div className="mt-2 flex flex-col gap-2 text-sm">
+                  <a
+                    className="inline-flex items-center gap-2"
+                    href="mailto:avinashofficial28103@gmail.com"
+                  >
+                    <Mail size={16} /> avinashofficial28103@gmail.com
+                  </a>
+                  <a
+                    className="inline-flex items-center gap-2"
+                    href="tel:+918532831661"
+                  >
+                    <Phone size={16} /> +91-8532831661
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        {/* Skills */}
+        <section
+          id="about"
+          className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+        >
+          <h3 className="text-xl font-semibold">Skills & Tools</h3>
+          <p className="text-slate-600 mt-2">
+            A concise list of technologies and tools used in projects and
+            internships.
+          </p>
+
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              "Python",
+              "Scikit-learn",
+              "TensorFlow",
+              "OpenCV",
+              "React.js",
+              "Node.js",
+              "Express.js",
+              "MongoDB",
+              "Power BI",
+              "Git & GitHub",
+              "Flask",
+              "Streamlit",
+            ].map((s) => (
+              <Badge key={s} label={s} />
+            ))}
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section id="projects">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold">Selected Projects</h3>
+            <p className="text-sm text-slate-500">
+              Projects & repositories from GitHub / Resume
+            </p>
+          </div>
+
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {projects.map((p) => (
+              <article
+                key={p.title}
+                className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition"
+              >
+                <h4 className="font-semibold">{p.title}</h4>
+                <p className="text-sm text-slate-600 mt-2">{p.desc}</p>
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs px-2 py-1 rounded-full border border-slate-100"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex items-center justify-between">
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm text-indigo-600 hover:underline inline-flex items-center gap-2"
+                  >
+                    <Link size={14} /> View Code
+                  </a>
+                  <div className="text-xs text-slate-500">GitHub</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience */}
+        <section
+          id="experience"
+          className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+        >
+          <h3 className="text-xl font-semibold">Internships & Experience</h3>
+          <div className="mt-4 space-y-4">
+            <JobCard
+              role="Machine Learning Intern"
+              org="Internshala"
+              duration="2024"
+              bullets={[
+                "Cleaned and transformed raw datasets using Pandas and NumPy to improve model accuracy.",
+                "Improved model accuracy by 15% through hyperparameter tuning and algorithm optimization.",
+                "Reduced preprocessing time by 30% by automating feature engineering pipelines.",
+              ]}
+            />
+            <JobCard
+              role="Web Development Intern"
+              org="Internshala"
+              duration="2024"
+              bullets={[
+                "Built interactive and responsive UIs using React.js, HTML, CSS, and Bootstrap.",
+                "Developed APIs and handled requests using Node.js and Express.js.",
+                "Used MongoDB for efficient data storage and retrieval; deployed apps on Heroku & Firebase.",
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* Certifications */}
+        <section className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <h3 className="text-xl font-semibold">Certifications</h3>
+          <ul className="mt-3 list-disc list-inside text-slate-700">
+            <li>Machine Learning Internship Certificate — Internshala</li>
+            <li>Web Development Internship Certificate — Internshala</li>
+          </ul>
+        </section>
+
+        {/* Contact */}
+        <section
+          id="contact"
+          className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+        >
+          <h3 className="text-xl font-semibold">Get in touch</h3>
+          <p className="text-slate-600 mt-2">
+            Prefer email — or reach out on LinkedIn. I usually reply within a day.
+          </p>
+
+          <div className="mt-4 grid md:grid-cols-2 gap-4">
+            <div className="rounded-lg p-4 border border-slate-100">
+              <h4 className="font-medium">Contact Info</h4>
+              <div className="mt-3 text-sm text-slate-700 space-y-2">
+                <div className="inline-flex items-center gap-2">
+                  <Mail size={16} />{" "}
+                  <a href="mailto:avinashofficial28103@gmail.com">
+                    avinashofficial28103@gmail.com
+                  </a>
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <Phone size={16} />{" "}
+                  <a href="tel:+918532831661">+91-8532831661</a>
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <Link size={16} />{" "}
+                  <a
+                    href="https://www.linkedin.com/in/avinash-shukla-4446311b5/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <Code size={16} />{" "}
+                  <a
+                    href="https://github.com/Avinash28123"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Form */}
+            <form
+              action={`mailto:avinashofficial28103@gmail.com`}
+              method="post"
+              encType="text/plain"
+              className="rounded-lg p-4 border border-slate-100"
+            >
+              <h4 className="font-medium">Quick message</h4>
+              <label className="block mt-3 text-xs text-slate-600">Your name</label>
+              <input
+                className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+                placeholder="Name"
+              />
+
+              <label className="block mt-3 text-xs text-slate-600">Your email</label>
+              <input
+                className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+                placeholder="Email"
+              />
+
+              <label className="block mt-3 text-xs text-slate-600">Message</label>
+              <textarea
+                className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+                rows={4}
+                placeholder="Write a short message"
+              ></textarea>
+
+              <button
+                type="submit"
+                className="mt-3 px-4 py-2 rounded-md bg-slate-900 text-white text-sm"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <footer className="text-center text-slate-500 text-sm py-8">
+          Made with ❤️ • Avinash Shukla • COER University
+        </footer>
+      </main>
+    </div>
+  );
+}
+
+/* Badge Component */
+function Badge({ label }) {
+  return (
+    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-slate-100 bg-slate-50">
+      {label}
+    </span>
+  );
+}
+
+/* Job Card */
+function JobCard({ role, org, duration, bullets }) {
+  return (
+    <div className="rounded-lg p-4 border border-slate-100 bg-white">
+      <div className="flex items-center justify-between">
+        <div>
+          <h4 className="font-semibold">{role}</h4>
+          <p className="text-sm text-slate-600">
+            {org} • <span className="text-xs">{duration}</span>
+          </p>
         </div>
-
-        <form action={`mailto:avinashofficial28103@gmail.com`} method="post" encType="text/plain" className="rounded-lg p-4 border border-slate-100">
-          <h4 className="font-medium">Quick message</h4>
-          <label className="block mt-3 text-xs text-slate-600">Your name</label>
-          <input className="mt-1 w-full rounded-md border px-3 py-2 text-sm" placeholder="Name" />
-
-          <label className="block mt-3 text-xs text-slate-600">Your email</label>
-          <input className="mt-1 w-full rounded-md border px-3 py-2 text-sm" placeholder="Email" />
-
-          <label className="block mt-3 text-xs text-slate-600">Message</label>
-          <textarea className="mt-1 w-full rounded-md border px-3 py-2 text-sm" rows={4} placeholder="Write a short message"></textarea>
-
-          <button type="submit" className="mt-3 px-4 py-2 rounded-md bg-slate-900 text-white text-sm">Send</button>
-        </form>
       </div>
-    </section>
-
-    <footer className="text-center text-slate-500 text-sm py-8">Made with ❤️ • Avinash Shukla • COER University</footer>
-  </main>
-</div>
-
-); }
-
-function Badge({ label }) { return ( <span className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-slate-100 bg-slate-50">{label}</span> ); }
-
-function JobCard({ role, org, duration, bullets }) { return ( <div className="rounded-lg p-4 border border-slate-100 bg-white"> <div className="flex items-center justify-between"> <div> <h4 className="font-semibold">{role}</h4> <p className="text-sm text-slate-600">{org} • <span className="text-xs">{duration}</span></p> </div> </div>
-
-<ul className="mt-3 list-disc list-inside text-slate-700 text-sm">
-    {bullets.map((b, i) => (
-      <li key={i}>{b}</li>
-    ))}
-  </ul>
-</div>
-
-); }
+      <ul className="mt-3 list-disc list-inside text-slate-700 text-sm">
+        {bullets.map((b, i) => (
+          <li key={i}>{b}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
