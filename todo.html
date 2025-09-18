@@ -3,42 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List App</title>
+  <title>To-Do List</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #667eea, #764ba2);
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 0;
     }
     .container {
       background: #fff;
-      padding: 30px;
-      border-radius: 15px;
+      padding: 25px;
+      border-radius: 12px;
       width: 350px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       text-align: center;
     }
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       color: #333;
     }
     input {
-      width: 75%;
-      padding: 10px;
-      border-radius: 8px;
+      width: 70%;
+      padding: 8px;
       border: 1px solid #ccc;
-      outline: none;
+      border-radius: 6px;
     }
     button {
-      padding: 10px;
+      padding: 9px 15px;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       background: #667eea;
       color: white;
-      font-weight: bold;
       cursor: pointer;
     }
     button:hover {
@@ -68,7 +67,7 @@
       background: red;
       color: white;
       border: none;
-      padding: 5px 10px;
+      padding: 4px 8px;
       border-radius: 5px;
       cursor: pointer;
     }
@@ -83,28 +82,37 @@
   </div>
 
   <script>
-    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
 
     function render() {
       const list = document.getElementById("list");
       list.innerHTML = "";
       tasks.forEach((task, index) => {
         const li = document.createElement("li");
-        li.innerHTML = `
-          <span onclick="toggleDone(${index})" class="${task.done ? 'done' : ''}">${task.text}</span>
-          <button class="delete" onclick="deleteTask(${index})">X</button>
-        `;
+
+        const span = document.createElement("span");
+        span.textContent = task.text;
+        if (task.done) span.classList.add("done");
+        span.onclick = () => toggleDone(index);
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "X";
+        delBtn.className = "delete";
+        delBtn.onclick = () => deleteTask(index);
+
+        li.appendChild(span);
+        li.appendChild(delBtn);
         list.appendChild(li);
       });
       localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
     function addTask() {
-      const taskInput = document.getElementById("task");
-      const text = taskInput.value.trim();
+      const input = document.getElementById("task");
+      const text = input.value.trim();
       if (text) {
         tasks.push({ text, done: false });
-        taskInput.value = "";
+        input.value = "";
         render();
       }
     }
