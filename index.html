@@ -1,33 +1,4 @@
-/* Avinash Shukla - Single-file React portfolio component
-
-How to use
-
-1. Create a React + Tailwind project (recommended: Vite + React).
-
-npm create vite@latest my-portfolio -- --template react
-
-cd my-portfolio
-
-Install Tailwind CSS (follow official Tailwind + Vite guide)
-
-
-
-2. Drop this file into src/components/Avinash_Shukla_Portfolio.jsx
-
-
-3. Import and render in App.jsx: import Portfolio from "./components/Avinash_Shukla_Portfolio"; <Portfolio />
-
-
-4. Replace placeholder images or add assets in /public and update the URLs.
-
-
-
-Notes: Uses Tailwind utility classes. No external images are bundled. Replace links and add real screenshots for project cards. */
-
-import React from "react"; import { MailIcon, PhoneIcon, LinkIcon, CodeIcon } from "lucide-react";
-
-const projects = [ { title: "AI-Powered Career Recommendation", desc: "Career prediction & recommendation system using Scikit-learn and Flask. Deployed on Streamlit Cloud for real-time access.", tech: ["Python", "Scikit-learn", "Flask", "Streamlit"], link: "https://github.com/Avinash28123/MACHINELEARNING", }, { title: "Amazon Sales Analysis (Power BI)", desc: "Interactive 4-page Power BI dashboard analyzing Amazon sales data (2010-2017) with advanced DAX reports.", tech: ["Power BI", "DAX", "Data Analysis"], link: "https://github.com/Avinash28123", }, { title: "Sign Language Detection", desc: "Real-time sign language recognition using OpenCV and TensorFlow (CNN) via webcam input.", tech: ["OpenCV", "TensorFlow", "CNN"], link: "https://github.com/Avinash28123", }, ];
-
+import React from "react";
 import { Mail, Phone, Code, Link } from "lucide-react";
 
 export default function AvinashPortfolio() {
